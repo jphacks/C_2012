@@ -1,7 +1,7 @@
 FROM python:3.6
 
 RUN apt-get update -qq
-# RUN apt-get install -y libgl1-mesa-dev
+RUN apt-get install -y libgl1-mesa-dev
 
 WORKDIR /usr/src/app
 
