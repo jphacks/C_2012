@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
   return render_template("index.html", message="Hello nikoha!")
 
-@app.route('/video/')
+@app.route('/video')
 def video():
 	return render_template("video.html")
 
