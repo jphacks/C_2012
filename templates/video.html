@@ -2,8 +2,9 @@
 {%- block content %}
 <div id="cameraArea">
     <video id="camera" width="640" height="480" playsinline muted autoplay></video>
-    <canvas id="canvas"></canvas>
-    <div id="emoticonBar"><span id="emoticon">:|</span></div>
+    <canvas id="canvas" width="640" height="480"></canvas> <!-- 顔枠用canvas -->
+    <div id="emoticonBar1"><span id="emoticon1">:|</span></div>
+    <div id="emoticonBar2"><span id="emoticon2">:|</span></div>
 </div>
 
 <style>
@@ -12,11 +13,25 @@
       max-width: 640px;
       margin: 0 auto;
     }
+    #camera {
+      /* 左右反転 */
+      transform: scale(-1, 1);
+    }
     #canvas {
       position: absolute;
       left: 0;
+      /* 左右反転 */
+      transform: scale(-1, 1);
     }
-    #emoticonBar {
+    #emoticonBar1 {
+      position: absolute;
+      top: 0;
+      left: -70px;
+      width: 40px;
+      height: 480px;
+      border-right: #DDD solid 6px;
+    }
+    #emoticonBar2 {
       position: absolute;
       top: 0;
       right: -30px;
@@ -24,7 +39,21 @@
       height: 480px;
       border-right: #DDD solid 6px;
     }
-    #emoticon {
+    #emoticon1 {
+      position: absolute;
+      bottom: 0;
+      right: -24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #CCC;
+      text-align: center;
+      font-size: 24px;
+      line-height: 40px;
+      transform: rotate(90deg);
+      transition: bottom 0.3s;
+    }
+    #emoticon2 {
       position: absolute;
       bottom: 0;
       right: -24px;

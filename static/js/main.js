@@ -4,31 +4,24 @@ FACE.EXPRESSION = () => {
   const cameraArea = document.getElementById('cameraArea'),
         camera = document.getElementById('camera'),
         canvas = document.getElementById('canvas'),
-        emoticon = document.getElementById('emoticon'),
+        emoticon1 = document.getElementById('emoticon1'),
+        emoticon2 = document.getElementById('emoticon2'),
         ctx = canvas.getContext('2d'),
-        canvasW = 640,
-        canvasH = 480,
-        intervalTime = 500,
+        intervalTime = 1000, // 判定間隔
         emoticonTxt = [':)',':|'];
 
   const init = async () => {
-    setCanvas();
-    setCamera();
     await faceapi.nets.tinyFaceDetector.load("static/js/weights/");
     await faceapi.nets.faceExpressionNet.load("static/js/weights/");
-  },
-
-  setCanvas = () => {
-    canvas.width = canvasW;
-    canvas.height = canvasH;
+    setCamera();
   },
 
   setCamera = async () => {
     var constraints = {
       audio: false,
       video: {
-        width: canvasW,
-        height: canvasH,
+        width: camera.width,
+        height: canvas.height,
         facingMode: 'user'
       }
     };
@@ -44,49 +37,113 @@ FACE.EXPRESSION = () => {
     });
   },
 
-  playCamera = () => {
+  playCamera = async() => {
     camera.play();
-    setInterval(async () => {
-      canvas.getContext('2d').clearRect(0, 0, canvasW, canvasH);
-      checkFace();
+    // 判定反復処理
+    let timer = setInterval(async () => {
+      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      checkFace(timer)
     }, intervalTime);
   },
 
-  checkFace = async () => {
-    let faceData = await faceapi.detectAllFaces(
+  checkFace = async (timer) => {
+    let faceDatum = await faceapi.detectAllFaces(
       camera, new faceapi.TinyFaceDetectorOptions()
     ).withFaceExpressions();
-    if(faceData.length){
-      const setDetection = (num) => {
-        let box = faceData[num].detection.box;
+
+    // 二人以下でしか動かないようにする
+    if(faceDatum.length <= 2){
+      // faceDataの座標のarray
+      let coordinates = [];
+      // 合格happyのカウンタ
+      let passed_happy = 0;
+      
+      // 検出した顔を枠で囲む処理
+      const setDetection = (faceDatum) => {
+        for (let i = 0; i < faceDatum.length; i++) {
+          let box = faceDatum[i].detection.box;
             x = box.x,
             y = box.y,
             w = box.width,
             h = box.height;
 
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.strokeStyle = '#76FF03';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+          coordinates.push(x);
+
+          ctx.beginPath();
+          ctx.rect(x, y, w, h);
+          ctx.strokeStyle = '#76FF03';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
       },
 
-      setExpressions = (num) => {
-        let happy = faceData[num].expressions.happy,
-            color = happy * 150 + 100;
-        console.log(String(num) + " " + String(happy));
-        emoticon.style.bottom = (canvasH - 40) * happy + 'px';
-        emoticon.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
-        if(happy > 0.5){
-          emoticon.innerHTML = emoticonTxt[0];
-        }else{
-          emoticon.innerHTML = emoticonTxt[1];
+      // 笑顔の状態検出場所
+      setExpressions = (faceDatum) => {
+        for (let i = 0; i < faceDatum.length; i++) {
+          let happy = faceDatum[i].expressions.happy;
+          // バー顔色
+          let color = happy * 150 + 100;
+          console.log(happy); 
+
+          if (i == coordinates.indexOf(Math.min(...coordinates))) {
+            // 笑顔判定（0.999までは軽く出る、調整必要）
+            if (happy <= 0.9000) {
+              emoticon1.style.bottom = (canvas.height - 40) * happy + 'px';
+            } else if (happy <= 0.99990) {
+              emoticon1.style.bottom = (canvas.height - 40) * 0.9 + 'px';
+            } else {
+              // 合格笑顔＋１
+              passed_happy++;
+              emoticon1.style.bottom = (canvas.height - 40) * 1 + 'px';
+            }
+            // emoticon1の色指定
+            emoticon1.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
+            if(happy > 0.5){
+              emoticon1.innerHTML = emoticonTxt[0];
+            }else{
+              emoticon1.innerHTML = emoticonTxt[1];
+            }
+
+            if (coordinates.indexOf(Math.min(...coordinates)) == 0) {
+              emoticon2.style.bottom = 0+"px";
+              emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
+              emoticon2.innerHTML = emoticonTxt[1];
+            }
+          } else {
+            // 笑顔判定（0.999までは軽く出る、調整必要）
+            if (happy <= 0.9000) {
+              emoticon2.style.bottom = (canvas.height - 40) * happy + 'px';
+            } else if (happy <= 0.99990) {
+              emoticon2.style.bottom = (canvas.height - 40) * 0.9 + 'px';
+            } else {
+              // 合格笑顔＋１
+              passed_happy++;
+              emoticon2.style.bottom = (canvas.height - 40) * 1 + 'px';
+            }
+            // emoticon2の色指定
+            emoticon2.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
+            if(happy > 0.5){
+              emoticon2.innerHTML = emoticonTxt[0];
+            }else{
+              emoticon2.innerHTML = emoticonTxt[1];
+            }
+          }
         }
       };
-      // 笑顔状態描画
-      for (let i = 0; i < faceData.length; i++) {
-        setDetection(i);
-        setExpressions(i);
+
+      // 顔単位で笑顔状態描画
+      setDetection(faceDatum);
+      setExpressions(faceDatum);
+      
+      // この後笑顔値が合格なら何かしらreturnして処理終了。
+      if (passed_happy == 2) {
+        // 繰り返し処理を解除
+        clearInterval(timer);
+        // ----------------------------------スクショ処理ココに入れる---------------------------------------
+        // 画面遷移
+        setTimeout(await function(){
+          window.location.href = '/';
+        }, 2000);
       }
     }
   };
