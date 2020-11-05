@@ -1,69 +1,69 @@
+import json
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image
-from matplotlib.backends.backend_pdf import PdfPages
-from pathlib import Path
-from pdf2image import convert_from_path
+from PIL import Image, ImageDraw, ImageFont
 
-# 印鑑のpngファイルを75*75に縮小する
-def resize_image():
-  # 印鑑画像の読み込み
-  original_img1 = Image.open('images/format/stamp_sample1.png')
-  original_img2 = Image.open('images/format/stamp_sample2.png')
-  # 75*75に縮小する
-  original_img1.thumbnail((75, 75), Image.ANTIALIAS)
-  original_img2.thumbnail((75, 75), Image.ANTIALIAS)
-  # 保存
-  original_img1.save('images/resized_stamp1.png')
-  original_img2.save('images/resized_stamp2.png')
-  # 縮小した印鑑のpngファイルをアルファチャンネル込みで読み込む
-  husband_stamp_img = cv2.imread('images/resized_stamp1.png', -1)
-  wife_stamp_img = cv2.imread('images/resized_stamp2.png', -1)
-  return husband_stamp_img, wife_stamp_img
+def load_files():
+    # jsonファイルの読み込み
+    json_open = open('json/sample_json.json', 'r')
+    json_load = json.load(json_open)
 
-# PDFファイルのパスを格納する
-def make_path():
-  pdf_file = Path('images/format/format_sample.pdf')
-  img_path = Path('images')
-  return pdf_file, img_path
+    husband_last_name = json_load['husband']['last_name']
+    wife_last_name = json_load['wife']['last_name']
 
-# 婚姻届のpdfをpngに変換する
-def pdf_image(pdf_file, img_path, fmt = 'png', dpi = 200):
-  # pdf_file, img_pathをPathにする
-  pdf_path = Path(pdf_file)
-  image_dir = Path(img_path)
-  # PDFをImageに変換
-  pages = convert_from_path(pdf_path, dpi)
-  # 画像ファイルを１ページずつ保存
-  for i, page in enumerate(pages):
-    # 作成するpngファイル名を'format_sample_01.png'に指定する
-    file_name = '{}_{:02d}.{}'.format(pdf_path.stem, i+1, fmt)
-    image_path = image_dir / file_name
-    page.save(image_path, fmt)
-  # 生成したpngファイル'format_sample_01.png'を読み込む
-  base_img = cv2.imread('images/format_sample_01.png')
-  return base_img
+    return husband_last_name, wife_last_name
 
-# 'result.pdf'として保存する
-def save_pdf(base_img, husband_stamp_img, wife_stamp_img):
-    # 座標を与えて印鑑を合成する関数
-    def stamps(x1, y1, x2, y2, stamp_img):
-      base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2] * (1 - stamp_img[:, :, 3:] / 255) + stamp_img[:, :, :3] * (stamp_img[:, :, 3:] / 255)
+def create_last_name(last_name, whose_name):
+    # フォントの読み込み
+    fnt = ImageFont.truetype('font/ipamjm.ttf', 500)
+    # Imageインスタンスを生成
+    last_name_img = Image.new('RGBA',(500, 500 * len(last_name)))
+    # img上のImageDrawインスタンスを生成
+    draw = ImageDraw.Draw(last_name_img)
+    # fontを指定
+    for i in range(len(last_name)):
+        draw.text((0, 500 * i), last_name[i], font = fnt, fill = 'red')
+    last_name_img.save('images/{}_last_name.png'.format(whose_name))
 
-    # 夫の印鑑合成
-    stamps(1027, 2017, 1102, 2092, husband_stamp_img)
-    # 妻の印鑑合成
-    stamps(1542, 2017, 1617, 2092, wife_stamp_img)
+    return last_name_img
 
-    # pngファイル'result.png'を生成
-    cv2.imwrite('images/result.png', base_img)
-    # pdfファイル'result.pdf'を生成
-    pil_img = Image.open('images/result.png','r')
-    pil_img.save('images/result.pdf', 'PDF')
+def combine_images(whose_name):
+    global base_img
+    # 印鑑の外枠の読み込み
+    base_img = cv2.imread('images/format/stamps_base.png', -1)
+    # RGBへの変換
+    base_img = cv2.cvtColor(base_img, cv2.COLOR_BGR2RGB)
+
+    # 名字の文字画像の読み込み
+    last_name_img = cv2.imread('images/{}_last_name.png'.format(whose_name), -1)
+    # RGBへの変換
+    last_name_img = cv2.cvtColor(last_name_img, cv2.COLOR_BGRA2RGBA)
+    # 112*224に縮小する
+    resized_last_name_img = cv2.resize(last_name_img, (112, 224))
+
+    # 座標を与えて印鑑を生成する
+    def combine(x1, y1, x2, y2):
+        base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2]\
+         * (1 - resized_last_name_img[:, :, 3:] / 255)\
+         + resized_last_name_img[:, :, :3] * (resized_last_name_img[:, :, 3:] / 255)
+
+    # 印鑑合成
+    combine(111, 55, 223, 279)
+
+    # pngファイル'{}_last_name_img.png'を生成
+    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
+
+    # 保存したものを読み込み→変換→上書き保存 (((汚い!!!)))
+    base_img = cv2.imread('images/{}_last_name_img.png'.format(whose_name), -1)
+    base_img = cv2.cvtColor(base_img, cv2.COLOR_BGRA2RGBA)
+    # 白色のみTrueを返し，Alphaを0にする
+    base_img[:, :, 3] = np.where(np.all(base_img == 255, axis = -1), 0, 255)
+    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
+
 
 if __name__ == '__main__':
-  husband_stamp_img, wife_stamp_img = resize_image()
-  pdf_file, img_path = make_path()
-  base_img = pdf_image(pdf_file, img_path)
-  save_pdf(base_img, husband_stamp_img, wife_stamp_img)
+    husband_last_name, wife_last_name = load_files()
+    husband_last_name_img = create_last_name(husband_last_name, 'husband')
+    husband_last_name_img = create_last_name(wife_last_name, 'wife')
+    combine_images('husband')
+    combine_images('wife')
