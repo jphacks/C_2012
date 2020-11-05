@@ -4,36 +4,34 @@ import create_stamps.create_stamps as create_stamps
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-	if request.method == 'POST':
-		# sessionに必要事項を保存
+@app.route('/top')
+def top():
+	return render_template("top.html")
 
-		# pdf生成
+@app.route('/confirm_input')
+def confirm_input():
+	return render_template("confirm_input.html")
 
-		# 印鑑生成もここ？
-		# content = request.form['content'] # ex. content = '{"husband": {"last_name": "佐藤"},"wife": {"last_name": "田中"}}'
-		# husband_last_name, wife_last_name = create_stamps.load_files(content)
-		# husband_last_name_img = create_stamps.create_last_name(husband_last_name, 'husband')
-		# husband_last_name_img = create_stamps.create_last_name(wife_last_name, 'wife')
-		# create_stamps.combine_images('husband')
-		# create_stamps.combine_images('wife')
-		return redirect(url_for("confirm_stamps"))
-	else:
-		return render_template("index.html", message="Hello nikoha!")
-
-@app.route('/confirm_stamps')
-def confirm_stamps():
+@app.route('/confirm_stamp')
+def confirm_stamp():
 	# ディレクトリ直置きはまずいのでココでSession取り出して印鑑画像生成する（Want to do）
-	return render_template("confirm_stamps.html")
+	return render_template("confirm_stamp.html")
 
-@app.route('/video', methods=['GET', 'POST'])
+@app.route('/smilecamera', methods=['GET', 'POST'])
 def video():
 	if request.method == 'POST':
 		# pdf（必要事項、印鑑、写真） 作成処理？
 		return # redirect(url_for("NEXT_PAGE"))
 	else:
-		return render_template("video.html")
+		return render_template("smilecamera.html")
+
+@app.route('/stamp')
+def stamp():
+	return render_template("stamp.html")
+
+@app.route('/download')
+def download():
+	return render_template("download.html")
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
