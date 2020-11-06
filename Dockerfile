@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 
 ADD requirements.txt requirements.txt
 
+RUN apt-get install -y poppler-utils
+
 RUN pip install -r requirements.txt
 
 ADD . /user/src/app

@@ -4,6 +4,151 @@ from pathlib import Path
 from pdf2image import convert_from_path
 from PIL import Image, ImageDraw, ImageFont
 
+def create(husband_last_name, husband_first_name, husband_last_name_kana, husband_first_name_kana, husband_birth_year, husband_birth_month, husband_birth_day, husband_address_first, husband_address_banchi, husband_address_ban, husband_address_gou, wife_last_name, wife_first_name, wife_last_name_kana, wife_first_name_kana, wife_birth_year, wife_birth_month, wife_birth_day, wife_address_first, wife_address_banchi, wife_address_ban, wife_address_gou):
+
+    husband_last_name_img, husband_last_name_height, husband_last_name_width = create_text_img(
+        husband_last_name, 'husband_last_name')
+    husband_last_name_kana_img, husband_last_name_kana_height, husband_last_name_kana_width = create_text_img(
+        husband_last_name_kana, 'husband_last_name_kana')
+    husband_first_name_img, husband_first_name_height, husband_first_name_width = create_text_img(
+        husband_first_name, 'husband_first_name')
+    husband_first_name_kana_img, husband_first_name_kana_height, husband_first_name_kana_width = create_text_img(
+        husband_first_name_kana, 'husband_first_name_kana')
+    husband_birth_year_img, husband_birth_year_height, husband_birth_year_width = create_text_img(
+        husband_birth_year, 'husband_birth_year')
+    husband_birth_month_img, husband_birth_month_height, husband_birth_month_width = create_text_img(
+        husband_birth_month, 'husband_birth_month')
+    husband_birth_day_img, husband_birth_day_height, husband_birth_day_width = create_text_img(
+        husband_birth_day, 'husband_birth_day')
+    husband_address_first_img, husband_address_first_height, husband_address_first_width = create_text_img(
+        husband_address_first, 'husband_address_first')
+    husband_address_banchi_img, husband_address_banchi_height, husband_address_banchi_width = create_text_img(
+        husband_address_banchi, 'husband_address_banchi')
+    husband_address_ban_img, husband_address_ban_height, husband_address_ban_width = create_text_img(
+        husband_address_ban, 'husband_address_ban')
+    husband_address_gou_img, husband_address_gou_height, husband_address_gou_width = create_text_img(
+        husband_address_gou, 'husband_address_gou')
+
+    wife_last_name_img, wife_last_name_height, wife_last_name_width = create_text_img(
+        wife_last_name, 'wife_last_name')
+    wife_last_name_kana_img, wife_last_name_kana_height, wife_last_name_kana_width = create_text_img(
+        wife_last_name_kana, 'wife_last_name_kana')
+    wife_first_name_img, wife_first_name_height, wife_first_name_width = create_text_img(
+        wife_first_name, 'wife_first_name')
+    wife_first_name_kana_img, wife_first_name_kana_height, wife_first_name_kana_width = create_text_img(
+        wife_first_name_kana, 'wife_first_name_kana')
+    wife_birth_year_img, wife_birth_year_height, wife_birth_year_width = create_text_img(
+        wife_birth_year, 'wife_birth_year')
+    wife_birth_month_img, wife_birth_month_height, wife_birth_month_width = create_text_img(
+        wife_birth_month, 'wife_birth_month')
+    wife_birth_day_img, wife_birth_day_height, wife_birth_day_width = create_text_img(
+        wife_birth_day, 'wife_birth_day')
+    wife_address_first_img, wife_address_first_height, wife_address_first_width = create_text_img(
+        wife_address_first, 'wife_address_first')
+    wife_address_banchi_img, wife_address_banchi_height, wife_address_banchi_width = create_text_img(
+        wife_address_banchi, 'wife_address_banchi')
+    wife_address_ban_img, wife_address_ban_height, wife_address_ban_width = create_text_img(
+        wife_address_ban, 'wife_address_ban')
+    wife_address_gou_img, wife_address_gou_height, wife_address_gou_width = create_text_img(
+        wife_address_gou, 'wife_address_gou')
+
+    resized_husband_last_name_img, resized_husband_last_name_height, resized_husband_last_name_width = resize_img(
+        'husband_last_name', 60, min(husband_last_name_width, 200))
+    resized_husband_last_name_kana_img, resized_husband_last_name_kana_height, resized_husband_last_name_kana_width = resize_img(
+        'husband_last_name_kana', 30, min(husband_last_name_kana_width, 200))
+    resized_husband_first_name_img, resized_husband_first_name_height, resized_husband_first_name_width = resize_img(
+        'husband_first_name', 60, min(husband_first_name_width, 200))
+    resized_husband_first_name_kana_img, resized_husband_first_name_kana_height, resized_husband_first_name_kana_width = resize_img(
+        'husband_first_name_kana', 30, min(husband_first_name_kana_width, 200))
+    resized_husband_birth_year_img, resized_husband_birth_year_height, resized_husband_birth_year_width = resize_img(
+        'husband_birth_year', 35, min(husband_birth_year_width, 190))
+    resized_husband_birth_month_img, resized_husband_birth_month_height, resized_husband_birth_month_width = resize_img(
+        'husband_birth_month', 35, min(husband_birth_month_width, 80))
+    resized_husband_birth_day_img, resized_husband_birth_day_height, resized_husband_birth_day_width = resize_img(
+        'husband_birth_day', 35, min(husband_birth_day_width, 80))
+    resized_husband_address_first_img, resized_husband_address_first_height, resized_husband_address_first_width = resize_img(
+        'husband_address_first', 40, min(husband_address_first_width, 460))
+    resized_husband_address_ban_img, resized_husband_address_ban_height, resized_husband_address_ban_width = resize_img(
+        'husband_address_ban', 40, min(husband_address_ban_width, 190))
+    resized_husband_address_banchi_img, resized_husband_address_banchi_height, resized_husband_address_banchi_width = resize_img(
+        'husband_address_banchi', 40, min(husband_address_banchi_width, 190))
+    resized_husband_address_gou_img, resized_husband_address_gou_height, resized_husband_address_gou_width = resize_img(
+        'husband_address_gou', 40, min(husband_address_gou_width, 190))
+
+    resized_wife_last_name_img, resized_wife_last_name_height, resized_wife_last_name_width = resize_img(
+        'wife_last_name', 60, min(wife_last_name_width, 200))
+    resized_wife_last_name_kana_img, resized_wife_last_name_kana_height, resized_wife_last_name_kana_width = resize_img(
+        'wife_last_name_kana', 30, min(wife_last_name_kana_width, 200))
+    resized_wife_first_name_img, resized_wife_first_name_height, resized_wife_first_name_width = resize_img(
+        'wife_first_name', 60, min(wife_first_name_width, 200))
+    resized_wife_first_name_kana_img, resized_wife_first_name_kana_height, resized_wife_first_name_kana_width = resize_img(
+        'wife_first_name_kana', 30, min(wife_first_name_kana_width, 200))
+    resized_wife_birth_year_img, resized_wife_birth_year_height, resized_wife_birth_year_width = resize_img(
+        'wife_birth_year', 35, min(wife_birth_year_width, 190))
+    resized_wife_birth_month_img, resized_wife_birth_month_height, resized_wife_birth_month_width = resize_img(
+        'wife_birth_month', 35, min(wife_birth_month_width, 80))
+    resized_wife_birth_day_img, resized_wife_birth_day_height, resized_wife_birth_day_width = resize_img(
+        'wife_birth_day', 35, min(wife_birth_day_width, 80))
+    resized_wife_address_first_img, resized_wife_address_first_height, resized_wife_address_first_width = resize_img(
+        'wife_address_first', 40, min(wife_address_first_width, 460))
+    resized_wife_address_ban_img, resized_wife_address_ban_height, resized_wife_address_ban_width = resize_img(
+        'wife_address_ban', 40, min(wife_address_ban_width, 190))
+    resized_wife_address_banchi_img, resized_wife_address_banchi_height, resized_wife_address_banchi_width = resize_img(
+        'wife_address_banchi', 40, min(wife_address_banchi_width, 190))
+    resized_wife_address_gou_img, resized_wife_address_gou_height, resized_wife_address_gou_width = resize_img(
+        'wife_address_gou', 40, min(wife_address_gou_width, 190))
+
+    pdf_file, img_path = make_path()
+    base_image = pdf_image(pdf_file, img_path)
+
+    base_image = combine(base_image, 560 - resized_husband_last_name_width // 2, 570 - resized_husband_last_name_height // 2, 560 - resized_husband_last_name_width // 2 +
+            resized_husband_last_name_width, 570 - resized_husband_last_name_height // 2 + resized_husband_last_name_height, resized_husband_last_name_img)
+    base_image = combine(base_image, 560 - resized_husband_last_name_kana_width // 2, 500 - resized_husband_last_name_kana_height // 2, 560 - resized_husband_last_name_kana_width // 2 +
+            resized_husband_last_name_kana_width, 500 - resized_husband_last_name_kana_height // 2 + resized_husband_last_name_kana_height, resized_husband_last_name_kana_img)
+    base_image = combine(base_image, 800 - resized_husband_first_name_width // 2, 570 - resized_husband_first_name_height // 2, 800 - resized_husband_first_name_width // 2 +
+            resized_husband_first_name_width, 570 - resized_husband_first_name_height // 2 + resized_husband_first_name_height, resized_husband_first_name_img)
+    base_image = combine(base_image, 800 - resized_husband_first_name_kana_width // 2, 500 - resized_husband_first_name_kana_height // 2, 800 - resized_husband_first_name_kana_width // 2 +
+            resized_husband_first_name_kana_width, 500 - resized_husband_first_name_kana_height // 2 + resized_husband_first_name_kana_height, resized_husband_first_name_kana_img)
+    base_image = combine(base_image, 560 - resized_husband_birth_year_width // 2, 627 - resized_husband_birth_year_height // 2, 560 - resized_husband_birth_year_width // 2 +
+            resized_husband_birth_year_width, 627 - resized_husband_birth_year_height // 2 + resized_husband_birth_year_height, resized_husband_birth_year_img)
+    base_image = combine(base_image, 700 - resized_husband_birth_month_width // 2, 627 - resized_husband_birth_month_height // 2, 700 - resized_husband_birth_month_width // 2 +
+            resized_husband_birth_month_width, 627 - resized_husband_birth_month_height // 2 + resized_husband_birth_month_height, resized_husband_birth_month_img)
+    base_image = combine(base_image, 815 - resized_husband_birth_day_width // 2, 627 - resized_husband_birth_day_height // 2, 815 - resized_husband_birth_day_width // 2 +
+            resized_husband_birth_day_width, 627 - resized_husband_birth_day_height // 2 + resized_husband_birth_day_height, resized_husband_birth_day_img)
+    base_image = combine(base_image, 680 - resized_husband_address_first_width // 2, 680 - resized_husband_address_first_height // 2, 680 - resized_husband_address_first_width // 2 +
+            resized_husband_address_first_width, 680 - resized_husband_address_first_height // 2 + resized_husband_address_first_height, resized_husband_address_first_img)
+    base_image = combine(base_image, 552 - resized_husband_address_ban_width // 2, 730 - resized_husband_address_ban_height // 2, 552 - resized_husband_address_ban_width // 2 +
+            resized_husband_address_ban_width, 730 - resized_husband_address_ban_height // 2 + resized_husband_address_ban_height, resized_husband_address_ban_img)
+    base_image = combine(base_image, 552 - resized_husband_address_banchi_width // 2, 730 - resized_husband_address_banchi_height // 2, 552 - resized_husband_address_banchi_width // 2 +
+            resized_husband_address_banchi_width, 730 - resized_husband_address_banchi_height // 2 + resized_husband_address_banchi_height, resized_husband_address_banchi_img)
+    base_image = combine(base_image, 740 - resized_husband_address_gou_width // 2, 730 - resized_husband_address_gou_height // 2, 740 - resized_husband_address_gou_width // 2 +
+            resized_husband_address_gou_width, 730 - resized_husband_address_gou_height // 2 + resized_husband_address_gou_height, resized_husband_address_gou_img)
+
+    base_image = combine(base_image, 1035 - resized_wife_last_name_width // 2, 570 - resized_wife_last_name_height // 2, 1035 - resized_wife_last_name_width // 2 +
+            resized_wife_last_name_width, 570 - resized_wife_last_name_height // 2 + resized_wife_last_name_height, resized_wife_last_name_img)
+    base_image = combine(base_image, 1035 - resized_wife_last_name_kana_width // 2, 500 - resized_wife_last_name_kana_height // 2, 1035 - resized_wife_last_name_kana_width // 2 + 
+            resized_wife_last_name_kana_width, 500 - resized_wife_last_name_kana_height // 2 + resized_wife_last_name_kana_height, resized_wife_last_name_kana_img)
+    base_image = combine(base_image, 1270 - resized_wife_first_name_width // 2, 570 - resized_wife_first_name_height // 2, 1270 - resized_wife_first_name_width // 2 +
+            resized_wife_first_name_width, 570 - resized_wife_first_name_height // 2 + resized_wife_first_name_height, resized_wife_first_name_img)
+    base_image = combine(base_image, 1270 - resized_wife_first_name_kana_width // 2, 500 - resized_wife_first_name_kana_height // 2, 1270 - resized_wife_first_name_kana_width // 2 +
+            resized_wife_first_name_kana_width, 500 - resized_wife_first_name_kana_height // 2 + resized_wife_first_name_kana_height, resized_wife_first_name_kana_img)
+    base_image = combine(base_image, 1035 - resized_wife_birth_year_width // 2, 627 - resized_wife_birth_year_height // 2, 1035 - resized_wife_birth_year_width // 2 +
+            resized_wife_birth_year_width, 627 - resized_wife_birth_year_height // 2 + resized_wife_birth_year_height, resized_wife_birth_year_img)
+    base_image = combine(base_image, 1180 - resized_wife_birth_month_width // 2, 627 - resized_wife_birth_month_height // 2, 1180 - resized_wife_birth_month_width // 2 +
+            resized_wife_birth_month_width, 627 - resized_wife_birth_month_height // 2 + resized_wife_birth_month_height, resized_wife_birth_month_img)
+    base_image = combine(base_image, 1290 - resized_wife_birth_day_width // 2, 627 - resized_wife_birth_day_height // 2, 1290 - resized_wife_birth_day_width // 2 +
+            resized_wife_birth_day_width, 627 - resized_wife_birth_day_height // 2 + resized_wife_birth_day_height, resized_wife_birth_day_img)
+    base_image = combine(base_image, 1153 - resized_wife_address_first_width // 2, 680 - resized_wife_address_first_height // 2, 1153 - resized_wife_address_first_width // 2 +
+            resized_wife_address_first_width, 680 - resized_wife_address_first_height // 2 + resized_wife_address_first_height, resized_wife_address_first_img)
+    base_image = combine(base_image, 1028 - resized_wife_address_ban_width // 2, 730 - resized_wife_address_ban_height // 2, 1028 - resized_wife_address_ban_width // 2 +
+            resized_wife_address_ban_width, 730 - resized_wife_address_ban_height // 2 + resized_wife_address_ban_height, resized_wife_address_ban_img)
+    base_image = combine(base_image, 1028 - resized_wife_address_banchi_width // 2, 730 - resized_wife_address_banchi_height // 2, 1028 - resized_wife_address_banchi_width // 2 +
+            resized_wife_address_banchi_width, 730 - resized_wife_address_banchi_height // 2 + resized_wife_address_banchi_height, resized_wife_address_banchi_img)
+    base_image = combine(base_image, 1207 - resized_wife_address_gou_width // 2, 730 - resized_wife_address_gou_height // 2, 1207 - resized_wife_address_gou_width // 2 +
+            resized_wife_address_gou_width, 730 - resized_wife_address_gou_height // 2 + resized_wife_address_gou_height, resized_wife_address_gou_img)
+
+    save_pdf(base_image)
+
 
 def load_files():
     # jsonファイルを開く
@@ -41,12 +186,12 @@ def load_files():
 def create_text_img(text, label):
     global text_img
     # フォントの読み込み
-    fnt = ImageFont.truetype('font/ipaexg.ttf', 500)
+    fnt = ImageFont.truetype('font/ipamjm.ttf', 500)
     # Imageインスタンスを生成
     text_img = Image.new('RGBA', (500 * len(text or " "), 500))
     # img上のImageDrawインスタンスを生成
     draw = ImageDraw.Draw(text_img)
-    draw.text((0, 0), text, font=fnt, fill='black')
+    draw.text((0, 0), text or " ", font=fnt, fill='black')
     text_img.save('images/{}.png'.format(label))
     text_img = cv2.imread('images/{}.png'.format(label), -1)
 
@@ -95,7 +240,7 @@ def pdf_image(pdf_file, img_path, fmt='png', dpi=200):
     return base_img
 
 # 座標を与えて印鑑を合成する関数
-def combine(x1, y1, x2, y2, text_img):
+def combine(base_img, x1, y1, x2, y2, text_img):
     base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2] \
         * (1 - text_img[:, :, 3:] / 255) + text_img[:, :, :3] \
         * (text_img[:, :, 3:] / 255)
@@ -106,9 +251,10 @@ def combine(x1, y1, x2, y2, text_img):
 def save_pdf(base_img):
     # pngファイル'result_tmp.png'を生成
     cv2.imwrite('images/result_tmp.png', base_img)
+    cv2.imwrite('static/images/result_tmp.png', base_img)
     # pdfファイル'result.pdf'を生成
     pil_img = Image.open('images/result_tmp.png', 'r')
-    pil_img.save('images/result_tmp.pdf', 'PDF')
+    pil_img.save('static/images/result_tmp.pdf', 'PDF')
 
 
 if __name__ == '__main__':
