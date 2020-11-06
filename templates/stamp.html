@@ -13,14 +13,23 @@
     <div class="main stampsheet">
         <div class="stampsheet-wrapper">
             <div class="stampsheet-content">
-                <div class="frame">
-                    <img src="http://item.shopping.c.yimg.jp/i/n/tokushu-sozai_smartstamp42" alt="" class="hanko otto">
+                <div class="frame hasband">
+                    <img src="http://item.shopping.c.yimg.jp/i/n/tokushu-sozai_smartstamp42" alt="" class="stamp">
                 </div>
-                <div class="frame">
-                    <img src="https://item-shopping.c.yimg.jp/i/j/tokushu-sozai_smartstamp54" alt="" class="hanko tuma">
+                <div class="frame wife">
+                    <img src="https://item-shopping.c.yimg.jp/i/j/tokushu-sozai_smartstamp54" alt="" class="stamp">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- <script>
+$(function() {
+    $('.stamp').on('transitionend', function () {
+        console.log('ok');
+        window.location.href = "/download";
+    });
+});
+</script> -->
 {%- endblock %}

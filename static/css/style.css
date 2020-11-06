@@ -182,6 +182,18 @@ body {
     width: 200px;
     height: 200px;
     position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.frame.hasband {
+    left: 15%;
+}
+
+.frame.wife {
+    right: 15%;
 }
 
 .frame > img {
@@ -190,30 +202,21 @@ body {
 }
 
 @keyframes animation-sample {
-  0%{
-  opacity:0;
-   transform: scale(1) rotate(0deg);
-  }
-  50%{
-    opacity:0.2;
-   transform:scale(120) rotate(180deg);
-  }
-  100%{
-    opacity:1;
-    transform:scale(1) rotate(360deg);
-  }
+    0%{
+        opacity:0;
+        transform: scale(3) rotate(0deg);
+    }
+    50%{
+        opacity:0.2;
+        transform: scale(2) rotate(180deg);
+    }
+    100%{
+        opacity:1;
+        transform: scale(1) rotate(360deg);
+    }
 }
 
-.frame{
-  padding: 50px;
-  margin:100px 30px;
-  float:left;
-  padding-left:280px;
-  padding-top:200px;
-  position: relative;
-}
-
-.hanko{
+.stamp{
   transform: scale(1);
   animation-name: animation-sample;
   animation-duration: 1s;
