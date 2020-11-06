@@ -13,7 +13,7 @@
     <h1 class="title">
         <span class="title_step">STEP1</span>婚姻届の提出に必要な情報を記入しましょう
     </h1>
-    <form action="/input" method="POST">
+    <form>
         <div class="main input">
             <div class="input-section">
                 <h2 class="input-section_title">夫になる人</h2>
@@ -23,22 +23,22 @@
                         <div class="grid_title">よみかた</div>
                     </div>
                     <div class="grid_content_wrapper name">
-                        <input type="text" name="last_name" placeholder="氏"><input type="text" name="first_name"
+                        <input type="text" name="hasband-last_name" placeholder="氏"><input type="text" name="hasband-first_name"
                             placeholder="名">
-                        <input type="text" name="last_name_kana" placeholder="氏"><input type="text"
-                            name="first_name_kana" placeholder="名">
+                        <input type="text" name="hasband-last_name_kana" placeholder="氏"><input type="text"
+                            name="hasband-first_name_kana" placeholder="名">
                     </div>
                     <div class="grid_title">生年月日</div>
                     <div>
-                        <input type="tel" class="form_input_num" name="year" size="8" maxlength="4">年
-                        <input type="tel" class="form_input_num" name="month" size="8" maxlength="2">月
-                        <input type="tel" class="from_input_num" name="day" size="8" maxlength="2">日
+                        <input type="tel" class="form_input_num" name="hasband-birth_year" size="8" maxlength="4">年
+                        <input type="tel" class="form_input_num" name="hasband-birth_month" size="8" maxlength="2">月
+                        <input type="tel" class="from_input_num" name="hasband-birth_day" size="8" maxlength="2">日
                     </div>
                     <div class="grid_title">住所</div>
                     <div class="grid_content_wrapper address">
-                        <div><input type="text" name="address_first"></div>
-                        <div><input type="text" name="address_banchi">番地</div>
-                        <div><input type="text" name="address_ban">番<input type="text" name="address_gou">号</div>
+                        <div><input type="text" name="hasband-address_first"></div>
+                        <div><input type="text" name="hasband-address_banchi">番地</div>
+                        <div><input type="text" name="hasband-address_ban">番<input type="text" name="address_gou">号</div>
                     </div>
                 </div>
             </div>
@@ -50,29 +50,29 @@
                         <div class="grid_title">よみかた</div>
                     </div>
                     <div class="grid_content_wrapper name">
-                        <input type="text" name="last_name" placeholder="氏"><input type="text" name="first_name"
+                        <input type="text" name="wife-last_name" placeholder="氏"><input type="text" name="wife-first_name"
                             placeholder="名">
-                        <input type="text" name="last_name_kana" placeholder="氏"><input type="text"
-                            name="first_name_kana" placeholder="名">
+                        <input type="text" name="wife-last_name_kana" placeholder="氏"><input type="text"
+                            name="wife-first_name_kana" placeholder="名">
                     </div>
                     <div class="grid_title">生年月日</div>
                     <div>
-                        <input type="tel" class="form_input_num" name="year" size="8" maxlength="4">年
-                        <input type="tel" class="form_input_num" name="month" size="8" maxlength="2">月
-                        <input type="tel" class="from_input_num" name="day" size="8" maxlength="2">日
+                        <input type="tel" class="form_input_num" name="wife-birth_year" size="8" maxlength="4">年
+                        <input type="tel" class="form_input_num" name="wife-birth_month" size="8" maxlength="2">月
+                        <input type="tel" class="from_input_num" name="wife-birth_day" size="8" maxlength="2">日
                     </div>
                     <div class="grid_title">住所</div>
                     <div class="grid_content_wrapper address">
-                        <div><input type="text" name="address_first"></div>
-                        <div><input type="text" name="address_banchi">番地</div>
-                        <div><input type="text" name="address_ban">番<input type="text" name="address_gou">号</div>
+                        <div><input type="text" name="wife-address_first"></div>
+                        <div><input type="text" name="wife-address_banchi">番地</div>
+                        <div><input type="text" name="wife-address_ban">番<input type="text" name="address_gou">号</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="button">
             <div class="button-wrapper">
-                <input type="submit" value="記入内容を送信して次へ">
+                <input type="submit" content="記入内容を送信して次へ">
             </div>
         </div>
     </form>
