@@ -1,0 +1,226 @@
+* {
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+body {
+    background-color: #FDF8EB;
+}
+
+.container {
+    width: 70vw;
+    margin: 10vh auto;
+}
+
+.step {
+    margin: 5vh 0;
+}
+
+.step-list {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.step-list > li {
+    list-style: none;
+    font-size: 1.1em;
+}
+
+.step-list > .active {
+    color: #BCA36E;
+}
+
+.step_icon img {
+    height: 0.8em;
+    margin: 0 20px;
+}
+
+.title {
+    background-color: #fff;
+    margin: 30px 0;
+    padding: 32px 70px;
+    opacity: 0.9;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 2em;
+}
+
+.title_step {
+    background-color: #040000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    line-height: 2em;
+}
+
+.main {
+    font-size: 1.2em;
+}
+
+.button {
+    text-align: center;
+    margin: 60px 0;
+}
+
+.button-wrapper {
+    color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+.button-wrapper::after {
+    content: "";
+    width: .7em;
+    height: .7em;
+    border-top: 1px solid #fff;
+    border-right: 1.5px solid #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    margin: auto;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+
+.button-wrapper > input[type="submit"], .button-wrapper > .submit {
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    background-color: #C41124;
+    border-style: none;
+    padding: 20px 40px;
+    text-decoration: none;
+}
+
+/*
+ *
+ * input.html
+ *
+ */
+.input {
+    background-color: #fff;
+    padding: 30px 70px 80px;
+    color: #BCA36E;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .1);
+}
+
+.input-section_title {
+    border-bottom: 2px solid #BCA36E;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-section input {
+    border: 1px solid #BCA36E;
+    padding: 5px 10px;
+}
+
+.input-section input::placeholder {
+    color: #BCA36E;
+    opacity: 0.6;
+}
+
+.input-section_grid_container {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    grid-row-gap: 30px;
+}
+
+.input-section_grid_container .grid_title {
+    margin: auto auto auto 0;
+}
+
+.input-section_grid_container .grid_content_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.grid_content_wrapper input {
+    margin-bottom: 10px;
+}
+
+.grid_content_wrapper.name input {
+    width: 45%;
+}
+
+.name .grid_title {
+    height: 50%;
+}
+
+.grid_content_wrapper.address div{
+    width: 100%;
+}
+
+/*
+ *
+ * stamp.html
+ *
+ */
+ .stampsheet-wrapper {
+    background-image: url('/static/img/marriage_registration.jpg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    max-width: 900px;
+    width: 60vw;
+    margin: 5% auto;
+ }
+
+ .stampsheet-content {
+    background-color: rgba(0, 0, 0, .2);
+    height: calc(50vw / 420 * 297);
+    max-height: calc(900px / 420 * 297);
+    position: relative;
+}
+
+.stampsheet-content > .frame {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+}
+
+.frame > img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes animation-sample {
+  0%{
+  opacity:0;
+   transform: scale(1) rotate(0deg);
+  }
+  50%{
+    opacity:0.2;
+   transform:scale(120) rotate(180deg);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1) rotate(360deg);
+  }
+}
+
+.frame{
+  padding: 50px;
+  margin:100px 30px;
+  float:left;
+  padding-left:280px;
+  padding-top:200px;
+  position: relative;
+}
+
+.hanko{
+  transform: scale(1);
+  animation-name: animation-sample;
+  animation-duration: 1s;
+  transform-origin: 50% 50%;
+  animation-timing-function: linear;
+  width:40px;
+  height:40px;
+  text-align: center;
+  margin-left:70px;
+}
