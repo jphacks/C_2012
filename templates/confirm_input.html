@@ -13,11 +13,13 @@
     <h1 class="title">
         <span class="title_step">STEP2</span>婚姻届に記入した内容を確認しましょう
     </h1>
+    <image src="/static/images/result_tmp.png" alt="result_tmp.pdf" width="640" height="480">
     <div class="button">
         <div class="button-wrapper">
             <a href="/confirm_stamp" class="submit">入力内容を確定して次へ</a>>
         </div>
     </div>
+    {{ husband_last_name }}
 </div>
 <script type="text/javascript">
     $('.form_input_num').on("keypress", function (event) { return inputOnlyNum(event); });
