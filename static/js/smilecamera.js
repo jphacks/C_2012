@@ -98,7 +98,7 @@ FACE.EXPRESSION = () => {
 				emoticon1.style.bottom = (canvas.height - 40) * 1 + 'px';
 				}
 				// emoticon1の色指定
-				emoticon1.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
+				// emoticon1.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
 				if(happy > 0.5){
 				emoticon1.innerHTML = emoticonTxt[0];
 				}else{
@@ -108,7 +108,7 @@ FACE.EXPRESSION = () => {
 				if (coordinates.indexOf(Math.min(...coordinates)) == 0) {
 				console.log(coordinates.indexOf(Math.min(...coordinates)));
 				emoticon2.style.bottom = 0+"px";
-				emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
+				// emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
 				emoticon2.innerHTML = emoticonTxt[1];
 				}
 				
@@ -124,7 +124,7 @@ FACE.EXPRESSION = () => {
 				emoticon2.style.bottom = (canvas.height - 40) * 1 + 'px';
 				}
 				// emoticon2の色指定
-				emoticon2.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
+				// emoticon2.style.backgroundColor = `rgb(${color}, ${color}, 100)`;
 				if(happy > 0.5){
 				emoticon2.innerHTML = emoticonTxt[0];
 				}else{
@@ -145,7 +145,7 @@ FACE.EXPRESSION = () => {
 		  // ----------------------------------スクショ処理ココに入れる---------------------------------------
 		  // 画面遷移
 		  setTimeout(await function(){
-		    window.location.href = '/';
+			window.location.href = '/smilecamera';
 		  }, 2000);
 		}
 		}

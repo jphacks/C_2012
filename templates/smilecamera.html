@@ -14,9 +14,9 @@
     <span class="title_step">STEP4</span>カメラに向かってふたりで笑顔！
   </h1>
   <div id="cameraArea" class="main">
-    <video id="camera" width="640" height="480" playsinline muted autoplay></video>
-    <canvas id="canvas" width="640" height="480"></canvas> <!-- 顔枠用canvas -->
     <div id="emoticonBar1"><span id="emoticon1">:|</span></div>
+    <video id="camera" width="960" height="480" playsinline muted autoplay></video>
+    <canvas id="canvas" width="960" height="480"></canvas> <!-- 顔枠用canvas -->
     <div id="emoticonBar2"><span id="emoticon2">:|</span></div>
   </div>
   <div class="button">
@@ -28,7 +28,7 @@
 <style>
     #cameraArea {
       position: relative;
-      max-width: 640px;
+      max-width: 960px;
       margin: 0 auto;
     }
     #camera {
@@ -37,7 +37,7 @@
     }
     #canvas {
       position: absolute;
-      left: 0;
+      /* left: 0; */
       /* 左右反転 */
       transform: scale(-1, 1);
     }
@@ -60,13 +60,16 @@
     #emoticon1 {
       position: absolute;
       bottom: 0;
-      right: -24px;
+      right: -27px;
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #CCC;
       text-align: center;
       font-size: 24px;
+      color: #C41124;
+      border: solid;
+      border-color: #C41124;
+      background-color: white;
       line-height: 40px;
       transform: rotate(90deg);
       transition: bottom 0.3s;
@@ -74,13 +77,16 @@
     #emoticon2 {
       position: absolute;
       bottom: 0;
-      right: -24px;
+      right: -27px;
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #CCC;
       text-align: center;
       font-size: 24px;
+      color: #C41124;
+      border: solid;
+      border-color: #C41124;
+      background-color: white;
       line-height: 40px;
       transform: rotate(90deg);
       transition: bottom 0.3s;
