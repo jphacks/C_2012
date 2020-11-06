@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import cv2
-import create_stamps.create_stamps as create_stamps
+import create_stamps
 
 app = Flask(__name__)
 
 @app.route('/top')
 def top():
 	return render_template("top.html")
+
+@app.route('/input')
+def input():
+	return render_template("input.html")
 
 @app.route('/confirm_input')
 def confirm_input():

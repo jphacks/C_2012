@@ -1,4 +1,26 @@
 {%- extends "layout.html" %}
 {%- block content %}
-<h1>stamp page</h1>
+<div class="container">
+    <div class="step">
+        <ol class="step-list">
+            <li>おふたりの情報を入力<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span>
+            </li>
+            <li>入力内容を確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li>はんこを確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li class="active">カメラに向かって笑顔</li>
+        </ol>
+    </div>
+    <div class="main stampsheet">
+        <div class="stampsheet-wrapper">
+            <div class="stampsheet-content">
+                <div class="frame">
+                    <img src="http://item.shopping.c.yimg.jp/i/n/tokushu-sozai_smartstamp42" alt="" class="hanko otto">
+                </div>
+                <div class="frame">
+                    <img src="https://item-shopping.c.yimg.jp/i/j/tokushu-sozai_smartstamp54" alt="" class="hanko tuma">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {%- endblock %}

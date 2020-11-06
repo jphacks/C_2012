@@ -1,12 +1,30 @@
 {%- extends "layout.html" %}
 {%- block content %}
-<div id="cameraArea">
+
+<div class="container">
+  <div class="step">
+    <ol class="step-list">
+      <li class="completed">おふたりの情報を入力<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="completed">入力内容を確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="completed">はんこを確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="active">カメラに向かって笑顔</li>
+    </ol>
+  </div>
+  <h1 class="title">
+    <span class="title_step">STEP4</span>カメラに向かってふたりで笑顔！
+  </h1>
+  <div id="cameraArea" class="main">
     <video id="camera" width="640" height="480" playsinline muted autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas> <!-- 顔枠用canvas -->
     <div id="emoticonBar1"><span id="emoticon1">:|</span></div>
     <div id="emoticonBar2"><span id="emoticon2">:|</span></div>
+  </div>
+  <div class="button">
+    <div class="button-wrapper">
+      <a href="/stamp" class="submit">仮のボタンです</a>>
+    </div>
+  </div>
 </div>
-
 <style>
     #cameraArea {
       position: relative;

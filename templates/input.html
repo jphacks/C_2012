@@ -1,0 +1,89 @@
+{%- extends "layout.html" %}
+{%- block content %}
+<div class="container">
+    <div class="step">
+        <ol class="step-list">
+            <li class="active">おふたりの情報を入力<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span>
+            </li>
+            <li>入力内容を確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li>はんこを確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li>カメラに向かって笑顔</li>
+        </ol>
+    </div>
+    <h1 class="title">
+        <span class="title_step">STEP1</span>婚姻届の提出に必要な情報を記入しましょう
+    </h1>
+    <form action="/input" method="POST">
+        <div class="main input">
+            <div class="input-section">
+                <h2 class="input-section_title">夫になる人</h2>
+                <div class="input-section_grid_container">
+                    <div class="grid_title_wrapper name">
+                        <div class="grid_title">氏名</div>
+                        <div class="grid_title">よみかた</div>
+                    </div>
+                    <div class="grid_content_wrapper name">
+                        <input type="text" name="last_name" placeholder="氏"><input type="text" name="first_name"
+                            placeholder="名">
+                        <input type="text" name="last_name_kana" placeholder="氏"><input type="text"
+                            name="first_name_kana" placeholder="名">
+                    </div>
+                    <div class="grid_title">生年月日</div>
+                    <div>
+                        <input type="tel" class="form_input_num" name="year" size="8" maxlength="4">年
+                        <input type="tel" class="form_input_num" name="month" size="8" maxlength="2">月
+                        <input type="tel" class="from_input_num" name="day" size="8" maxlength="2">日
+                    </div>
+                    <div class="grid_title">住所</div>
+                    <div class="grid_content_wrapper address">
+                        <div><input type="text" name="address_first"></div>
+                        <div><input type="text" name="address_banchi">番地</div>
+                        <div><input type="text" name="address_ban">番<input type="text" name="address_gou">号</div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-section">
+                <h2 class="input-section_title">妻になる人</h2>
+                <div class="input-section_grid_container">
+                    <div class="grid_title_wrapper name">
+                        <div class="grid_title">氏名</div>
+                        <div class="grid_title">よみかた</div>
+                    </div>
+                    <div class="grid_content_wrapper name">
+                        <input type="text" name="last_name" placeholder="氏"><input type="text" name="first_name"
+                            placeholder="名">
+                        <input type="text" name="last_name_kana" placeholder="氏"><input type="text"
+                            name="first_name_kana" placeholder="名">
+                    </div>
+                    <div class="grid_title">生年月日</div>
+                    <div>
+                        <input type="tel" class="form_input_num" name="year" size="8" maxlength="4">年
+                        <input type="tel" class="form_input_num" name="month" size="8" maxlength="2">月
+                        <input type="tel" class="from_input_num" name="day" size="8" maxlength="2">日
+                    </div>
+                    <div class="grid_title">住所</div>
+                    <div class="grid_content_wrapper address">
+                        <div><input type="text" name="address_first"></div>
+                        <div><input type="text" name="address_banchi">番地</div>
+                        <div><input type="text" name="address_ban">番<input type="text" name="address_gou">号</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-wrapper">
+                <input type="submit" value="記入内容を送信して次へ">
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('.form_input_num').on("keypress", function (event) { return inputOnlyNum(event); });
+
+    function inputOnlyNum(e) {
+        var st = String.fromCharCode(e.which);
+        if ("0123456789".indexOf(st, 0) < 0) { return false; }
+        return true;
+    }
+</script>
+{%- endblock %}
