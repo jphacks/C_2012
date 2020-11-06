@@ -3,9 +3,10 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-def load_files(sample_json):
+def load_files():
     # jsonファイルの読み込み
-    json_load = json.loads(sample_json)
+    json_open = open('json/sample_json.json', 'r')
+    json_load = json.load(json_open)
 
     husband_last_name = json_load['husband']['last_name']
     wife_last_name = json_load['wife']['last_name']
@@ -61,7 +62,7 @@ def combine_images(whose_name):
 
 
 if __name__ == '__main__':
-    husband_last_name, wife_last_name = load_files('{"husband": {"last_name": "佐藤"},"wife": {"last_name": "田中"}}')
+    husband_last_name, wife_last_name = load_files()
     husband_last_name_img = create_last_name(husband_last_name, 'husband')
     husband_last_name_img = create_last_name(wife_last_name, 'wife')
     combine_images('husband')
