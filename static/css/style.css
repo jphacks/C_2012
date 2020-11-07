@@ -264,3 +264,18 @@ header img {
   text-align: center;
   margin-left:70px;
 }
+
+/*
+ *
+ * donwnload.html
+ *
+ */
+ .download-wrapper {
+     width: 60vw;
+     max-width: 900px;
+     margin: 5% auto;
+ }
+
+ .download-wrapper > img {
+     width: 100%;
+ }
