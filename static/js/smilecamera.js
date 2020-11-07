@@ -90,7 +90,7 @@ FACE.EXPRESSION = () => {
 				// 笑顔判定（0.999までは軽く出る、調整必要）
 				if (happy <= 0.9000) {
 				emoticon1.style.bottom = (canvas.height - 40) * happy + 'px';
-				} else if (happy <= 0.90) {
+				} else if (happy < 0.90) {
 				emoticon1.style.bottom = (canvas.height - 40) * 0.9 + 'px';
 				} else {
 				// 合格笑顔＋１
@@ -105,18 +105,18 @@ FACE.EXPRESSION = () => {
 				emoticon1.innerHTML = emoticonTxt[1];
 				}
 
-				if (coordinates.indexOf(Math.min(...coordinates)) == 0) {
+				// if (coordinates.indexOf(Math.min(...coordinates)) == 0) {
 				// console.log(coordinates.indexOf(Math.min(...coordinates)));
-				emoticon2.style.bottom = 0+"px";
-				// emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
-				emoticon2.innerHTML = emoticonTxt[1];
-				}
+				// emoticon2.style.bottom = 0+"px";
+				// // emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
+				// emoticon2.innerHTML = emoticonTxt[1];
+				// }
 				
 			} else {
 				// 笑顔判定（0.999までは軽く出る、調整必要）
 				if (happy <= 0.9000) {
 				emoticon2.style.bottom = (canvas.height - 40) * happy + 'px';
-				} else if (happy <= 0.90) {
+				} else if (happy < 0.90) {
 				emoticon2.style.bottom = (canvas.height - 40) * 0.9 + 'px';
 				} else {
 				// 合格笑顔＋１
