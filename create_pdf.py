@@ -25,7 +25,7 @@ def load_base_img():
 
 # 'result.pdf'として保存する
 def save_pdf(base_img, husband_stamp_img, wife_stamp_img):
-    # 座標を与えて印鑑を合成する関数
+    # 座標を与えて画像を合成する
     def stamps(x1, y1, x2, y2, stamp_img):
       base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2] \
       * (1 - stamp_img[:, :, 3:] / 255) + stamp_img[:, :, :3] \
@@ -35,6 +35,12 @@ def save_pdf(base_img, husband_stamp_img, wife_stamp_img):
     stamps(837, 1770, 837 + 75, 1770 + 75, husband_stamp_img)
     # 妻の印鑑合成
     stamps(1310, 1770, 1310 + 75, 1770 + 75, wife_stamp_img)
+
+    # 写真サイズを取得(husband_stamp_imgは例)
+    picture_height, picture_width = husband_stamp_img.shape[:2]
+
+    # 写真の合成(husband_stamp_imgは例)
+    stamps(2088 - picture_width//2, 1402 - picture_height//2, 2088 - picture_width//2 + picture_width, 1402 - picture_height//2 + picture_height, husband_stamp_img)
 
     # pngファイル'result.png'を生成
     cv2.imwrite('images/result.png', base_img)
