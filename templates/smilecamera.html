@@ -19,11 +19,6 @@
     <canvas id="canvas" width="960" height="480"></canvas> <!-- 顔枠用canvas -->
     <div id="emoticonBar2"><span id="emoticon2">:|</span></div>
   </div>
-  <div class="button">
-    <div class="button-wrapper">
-      <a href="/stamp" class="submit">仮のボタンです</a>>
-    </div>
-  </div>
 </div>
 <style>
     #cameraArea {
@@ -37,7 +32,7 @@
     }
     #canvas {
       position: absolute;
-      /* left: 0; */
+      left: 0;
       /* 左右反転 */
       transform: scale(-1, 1);
     }
@@ -92,7 +87,7 @@
       transition: bottom 0.3s;
     }
     .shutterArea {
-      animation: flash 0.3s linear;
+      animation: flash 0.5s linear;
       background-color: #000000;
       opacity: 0;
     }
@@ -105,5 +100,4 @@
 
 <script src="static/js/face-api.min.js"></script>
 <script src="static/js/smilecamera.js"></script>
-<script src="static/js/shutterAction.js"></script>
 {%- endblock %}
