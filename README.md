@@ -95,7 +95,6 @@ nikohaなら、必要事項の記入から押印まで、全てnikohaだけで�
 * flask
 * opencv
 * jquery
-* sass
 * javascript
 
 #### API・データ
@@ -106,16 +105,10 @@ nikohaなら、必要事項の記入から押印まで、全てnikohaだけで�
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
-* 独自で開発したものの内容をこちらに記載してください
-* 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 * アプリケーションのデザイン
-* リアルタイム笑顔判定 [file]()
+* [リアルタイム笑顔判定](https://github.com/jphacks/C_2012/blob/develop/static/js/smilecamera.js)
   * リアルタイムで笑顔の状態を測定。
   * 横のメーターに表示。
-* 印鑑ジェネレーター [file]()
+* [印鑑ジェネレーター](https://github.com/jphacks/C_2012/blob/develop/create_stamps.py)
   * 入力された名字から自動で印鑑を生成。
-* 婚姻届(png)に必要事項、印鑑、写真を合成 [file]()
-
-#### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
-* 
-* 
+* [婚姻届(png)に必要事項、印鑑、写真を合成](https://github.com/jphacks/C_2012/blob/develop/create_pdf.py)
