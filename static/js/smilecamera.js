@@ -90,7 +90,7 @@ FACE.EXPRESSION = () => {
 				// 笑顔判定（0.999までは軽く出る、調整必要）
 				if (happy <= 0.9000) {
 				emoticon1.style.bottom = (canvas.height - 40) * happy + 'px';
-				} else if (happy <= 0.99990) {
+				} else if (happy <= 0.90) {
 				emoticon1.style.bottom = (canvas.height - 40) * 0.9 + 'px';
 				} else {
 				// 合格笑顔＋１
@@ -116,7 +116,7 @@ FACE.EXPRESSION = () => {
 				// 笑顔判定（0.999までは軽く出る、調整必要）
 				if (happy <= 0.9000) {
 				emoticon2.style.bottom = (canvas.height - 40) * happy + 'px';
-				} else if (happy <= 0.99990) {
+				} else if (happy <= 0.90) {
 				emoticon2.style.bottom = (canvas.height - 40) * 0.9 + 'px';
 				} else {
 				// 合格笑顔＋１
@@ -142,9 +142,10 @@ FACE.EXPRESSION = () => {
 		if (passed_happy == 2) {
 		  // 繰り返し処理を解除
 		  clearInterval(timer);
-		  // ----------------------------------スクショ処理ココに入れる---------------------------------------
 		  // 画面遷移
 		  setTimeout(await function(){
+			let camera = document.getElementById("camera")
+			camera.className = "shutterArea"
 			window.location.href = '/smilecamera';
 		  }, 2000);
 		}
