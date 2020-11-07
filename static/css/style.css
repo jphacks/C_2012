@@ -256,6 +256,7 @@ header img {
 .stampsheet-content > .frame {
     width: 200px;
     height: 200px;
+    background-color: #fff;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -264,11 +265,11 @@ header img {
 }
 
 .frame.hasband {
-    left: 15%;
+    left: 25%;
 }
 
 .frame.wife {
-    right: 15%;
+    right: 5%;
 }
 
 .frame > img {
@@ -300,7 +301,6 @@ header img {
   width:40px;
   height:40px;
   text-align: center;
-  margin-left:70px;
 }
 
 /*
