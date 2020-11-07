@@ -144,8 +144,9 @@ FACE.EXPRESSION = () => {
 		  clearInterval(timer);
 		  // 画面遷移
 		  setTimeout(await function(){
-			let camera = document.getElementById("camera")
-			camera.className = "shutterArea"
+			let camera = document.getElementById("camera");
+			camera.className = "shutterArea";
+			console.log('ok');
 			window.location.href = '/stamp';
 		  }, 2000);
 		}

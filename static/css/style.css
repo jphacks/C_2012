@@ -131,6 +131,31 @@ header img {
 
 /*
  *
+ * top.html
+ *
+ */
+.top-container {
+    height: 70vh;
+    margin-top: 20vh;
+}
+
+ .top-wrapper {
+    width: 60vw;
+    max-width: 900px;
+    margin: 5% auto;
+    text-align: center;
+ }
+
+ .top-wrapper > img {
+    width: 40%;
+ }
+
+ .top-wrapper > h2 {
+    margin: 5vh 0 10vh;
+}
+
+/*
+ *
  * input.html
  *
  */

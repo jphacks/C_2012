@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 app.secret_key = "aaa"
 
-@app.route('/top')
+@app.route('/')
 def top():
-	init_session()
+	# session.init_session()
 	return render_template("top.html")
 
 @app.route('/input', methods=['GET', 'POST'])
