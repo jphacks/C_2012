@@ -1,0 +1,103 @@
+{%- extends "layout.html" %}
+{%- block content %}
+
+<div class="container">
+  <div class="step">
+    <ol class="step-list">
+      <li class="completed done">おふたりの情報を入力<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="completed done">入力内容を確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="completed done">はんこを確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+      <li class="active">カメラに向かって笑顔</li>
+    </ol>
+  </div>
+  <h1 class="title">
+    <span class="title_step">STEP4</span>カメラに向かってふたりで笑顔！
+  </h1>
+  <div id="cameraArea" class="main">
+    <div id="emoticonBar1"><span id="emoticon1">:|</span></div>
+    <video id="camera" width="960" height="480" playsinline muted autoplay></video>
+    <canvas id="canvas" width="960" height="480"></canvas> <!-- 顔枠用canvas -->
+    <div id="emoticonBar2"><span id="emoticon2">:|</span></div>
+  </div>
+</div>
+<style>
+    #cameraArea {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    #camera {
+      /* 左右反転 */
+      transform: scale(-1, 1);
+    }
+    #canvas {
+      position: absolute;
+      left: 0;
+      /* 左右反転 */
+      transform: scale(-1, 1);
+    }
+    #emoticonBar1 {
+      position: absolute;
+      top: 0;
+      left: -70px;
+      width: 40px;
+      height: 480px;
+      border-right: #DDD solid 6px;
+    }
+    #emoticonBar2 {
+      position: absolute;
+      top: 0;
+      right: -30px;
+      width: 40px;
+      height: 480px;
+      border-right: #DDD solid 6px;
+    }
+    #emoticon1 {
+      position: absolute;
+      bottom: 0;
+      right: -27px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      color: #C41124;
+      border: solid;
+      border-color: #C41124;
+      background-color: white;
+      line-height: 40px;
+      transform: rotate(90deg);
+      transition: bottom 0.3s;
+    }
+    #emoticon2 {
+      position: absolute;
+      bottom: 0;
+      right: -27px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      color: #C41124;
+      border: solid;
+      border-color: #C41124;
+      background-color: white;
+      line-height: 40px;
+      transform: rotate(90deg);
+      transition: bottom 0.3s;
+    }
+    .shutterArea {
+      animation: flash 0.5s linear;
+      background-color: #000000;
+      opacity: 0;
+    }
+    @keyframes flash {
+      100% {
+        opacity: 1;
+      }
+    }
+</style>
+
+<script src="static/js/face-api.min.js"></script>
+<script src="static/js/smilecamera.js"></script>
+{%- endblock %}

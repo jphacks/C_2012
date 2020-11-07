@@ -1,0 +1,27 @@
+{%- extends "layout.html" %}
+{%- block content %}
+<div class="container">
+    <div class="step">
+        <ol class="step-list">
+            <li class="done">おふたりの情報を入力<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span>
+            </li>
+            <li class="active ">入力内容を確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li>はんこを確認<span class="step_icon"><img src="../static/img/arrow.png" alt="右矢印"></span></li>
+            <li>カメラに向かって笑顔</li>
+        </ol>
+    </div>
+    <h1 class="title">
+        <span class="title_step">STEP2</span>婚姻届に記入した内容を確認しましょう
+    </h1>
+    <div class="main pdf">
+        <div class="pdf-wrapper">
+            <img src="/static/images/result_tmp.png" alt="婚姻届">
+        </div>
+    </div>
+    <div class="button">
+        <div class="button-wrapper">
+            <a href="/confirm_stamp" class="submit">入力内容を確定して次へ</a>>
+        </div>
+    </div>
+</div>
+{%- endblock %}

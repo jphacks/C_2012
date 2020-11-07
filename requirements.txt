@@ -2,3 +2,5 @@ flask
 gunicorn
 numpy
 opencv-python
+Pillow
+pdf2image
