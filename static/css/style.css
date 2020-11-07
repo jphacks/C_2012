@@ -6,18 +6,9 @@
 body {
     background-color: #FDF8EB;
     position: relative;
-}
-
-body::before {
-  content: '';
-  background-image: url(../img/line_left.png);
-  background-size: cover;
-  display: inline-block;
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  top: -380px;
-  left: -160px;
+    background-image: url("../img/line_left.png"), url("../img/line_right.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: top -120px left -120px, bottom -150px right -160px;
 }
 
 header {
