@@ -43,6 +43,23 @@ header img {
 
 .step-list > .active {
     color: #BCA36E;
+    font-weight: bold;
+}
+
+.step-list > .done {
+  position: relative;
+}
+
+.step-list > .done::before {
+  content: "";
+  background: url(../img/done_stamp.png);
+  background-size: contain;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: -15px;
 }
 
 .step_icon img {
