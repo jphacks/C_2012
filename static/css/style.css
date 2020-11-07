@@ -196,6 +196,27 @@ header img {
 
 /*
  *
+ * confirm_input.html
+ *
+ */
+.stamp_flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stamp_box {
+  margin: 10px;
+  text-align: center;
+}
+
+.stamp_img {
+  background: #fff;
+  padding: 20px;
+}
+
+
+/*
+ *
  * stamp.html
  *
  */
