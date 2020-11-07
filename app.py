@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import cv2
 import create_stamps
 import confirm_pdf
+import create_pdf
 
 app = Flask(__name__)
 
@@ -98,6 +99,10 @@ def stamp():
 
 @app.route('/download')
 def download():
+	husband_stamp_img = create_pdf.resize_image('husband')
+	wife_stamp_img = create_pdf.resize_image('wife')
+	base_img = create_pdf.load_base_img()
+	create_pdf.save_pdf(base_img, husband_stamp_img, wife_stamp_img)
 	return render_template("download.html")
 
 if __name__ == '__main__':
