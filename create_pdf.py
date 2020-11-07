@@ -1,69 +1,55 @@
-import json
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
+from matplotlib.backends.backend_pdf import PdfPages
+from pathlib import Path
+from pdf2image import convert_from_path
 
-def load_files():
-    # jsonファイルの読み込み
-    json_open = open('json/sample_json.json', 'r')
-    json_load = json.load(json_open)
+# 印鑑のpngファイルを75*75に縮小する
+def resize_image(whose_name):
+  # 印鑑画像の読み込み
+  original_img = Image.open('../#15_create_stamps/images/{}_last_name_img.png'.format(whose_name))
+  # 75*75に縮小する
+  original_img.thumbnail((75, 75), Image.ANTIALIAS)
+  # 保存
+  original_img.save('images/resized_{}_name.png'.format(whose_name))
+  # 縮小した印鑑のpngファイルをアルファチャンネル込みで読み込む
+  resized_name_img = cv2.imread('images/resized_{}_name.png'.format(whose_name), -1)
+  return resized_name_img
 
-    husband_last_name = json_load['husband']['last_name']
-    wife_last_name = json_load['wife']['last_name']
+def load_base_img():
+    base_img = cv2.imread('../#16_confirm_pdf/images/result_tmp.png')
 
-    return husband_last_name, wife_last_name
+    return base_img
 
-def create_last_name(last_name, whose_name):
-    # フォントの読み込み
-    fnt = ImageFont.truetype('font/ipamjm.ttf', 500)
-    # Imageインスタンスを生成
-    last_name_img = Image.new('RGBA',(500, 500 * len(last_name)))
-    # img上のImageDrawインスタンスを生成
-    draw = ImageDraw.Draw(last_name_img)
-    # fontを指定
-    for i in range(len(last_name)):
-        draw.text((0, 500 * i), last_name[i], font = fnt, fill = 'red')
-    last_name_img.save('images/{}_last_name.png'.format(whose_name))
+# 'result.pdf'として保存する
+def save_pdf(base_img, husband_stamp_img, wife_stamp_img):
+    # 座標を与えて画像を合成する
+    def stamps(x1, y1, x2, y2, stamp_img):
+      base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2] \
+      * (1 - stamp_img[:, :, 3:] / 255) + stamp_img[:, :, :3] \
+      * (stamp_img[:, :, 3:] / 255)
 
-    return last_name_img
+    # 夫の印鑑合成
+    stamps(837, 1770, 837 + 75, 1770 + 75, husband_stamp_img)
+    # 妻の印鑑合成
+    stamps(1310, 1770, 1310 + 75, 1770 + 75, wife_stamp_img)
 
-def combine_images(whose_name):
-    global base_img
-    # 印鑑の外枠の読み込み
-    base_img = cv2.imread('images/format/stamps_base.png', -1)
-    # RGBへの変換
-    base_img = cv2.cvtColor(base_img, cv2.COLOR_BGR2RGB)
+    # 写真サイズを取得(husband_stamp_imgは例)
+    picture_height, picture_width = husband_stamp_img.shape[:2]
 
-    # 名字の文字画像の読み込み
-    last_name_img = cv2.imread('images/{}_last_name.png'.format(whose_name), -1)
-    # RGBへの変換
-    last_name_img = cv2.cvtColor(last_name_img, cv2.COLOR_BGRA2RGBA)
-    # 112*224に縮小する
-    resized_last_name_img = cv2.resize(last_name_img, (112, 224))
+    # 写真の合成(husband_stamp_imgは例)
+    stamps(2088 - picture_width//2, 1402 - picture_height//2, 2088 - picture_width//2 + picture_width, 1402 - picture_height//2 + picture_height, husband_stamp_img)
 
-    # 座標を与えて印鑑を生成する
-    def combine(x1, y1, x2, y2):
-        base_img[y1:y2, x1:x2] = base_img[y1:y2, x1:x2]\
-         * (1 - resized_last_name_img[:, :, 3:] / 255)\
-         + resized_last_name_img[:, :, :3] * (resized_last_name_img[:, :, 3:] / 255)
-
-    # 印鑑合成
-    combine(111, 55, 223, 279)
-
-    # pngファイル'{}_last_name_img.png'を生成
-    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
-
-    # 保存したものを読み込み→変換→上書き保存 (((汚い!!!)))
-    base_img = cv2.imread('images/{}_last_name_img.png'.format(whose_name), -1)
-    base_img = cv2.cvtColor(base_img, cv2.COLOR_BGRA2RGBA)
-    # 白色のみTrueを返し，Alphaを0にする
-    base_img[:, :, 3] = np.where(np.all(base_img == 255, axis = -1), 0, 255)
-    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
-
+    # pngファイル'result.png'を生成
+    cv2.imwrite('images/result.png', base_img)
+    # pdfファイル'result.pdf'を生成
+    pil_img = Image.open('images/result.png','r')
+    pil_img.save('images/result.pdf', 'PDF')
 
 if __name__ == '__main__':
-    husband_last_name, wife_last_name = load_files()
-    husband_last_name_img = create_last_name(husband_last_name, 'husband')
-    husband_last_name_img = create_last_name(wife_last_name, 'wife')
-    combine_images('husband')
-    combine_images('wife')
+  husband_stamp_img = resize_image('husband')
+  wife_stamp_img = resize_image('wife')
+  base_img = load_base_img()
+  save_pdf(base_img, husband_stamp_img, wife_stamp_img)
