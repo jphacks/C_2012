@@ -74,6 +74,14 @@ def confirm_input():
 @app.route('/confirm_stamp')
 def confirm_stamp():
 	# ディレクトリ直置きはまずいのでココでSession取り出して印鑑画像生成する（Want to do）
+	husband_last_name = session['husband_last_name']
+	wife_last_name = session['wife_last_name']
+
+	husband_last_name_img = create_stamps.create_last_name(husband_last_name, 'husband')
+	husband_last_name_img = create_stamps.create_last_name(wife_last_name, 'wife')
+	create_stamps.combine_images('husband')
+	create_stamps.combine_images('wife')
+
 	return render_template("confirm_stamp.html")
 
 @app.route('/smilecamera', methods=['GET', 'POST'])

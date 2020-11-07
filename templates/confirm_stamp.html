@@ -15,19 +15,19 @@
     <div class="main">
         <div>
             <p>夫になる人のはんこ</p>
-            <img src="/static/images/husband_last_name_img.png" alt="husband_last_name_img.png">
+            <img class="husband_stamp" src="/static/images/husband_last_name_img.png" alt="husband_last_name_img.png" width="320" height="320">
         </div>
         <div>
             <p>妻になる人のはんこ</p>
-            <img src="/static/images/wife_last_name_img.png" alt="wife_last_name_img.png">
+            <img class="wife_stamp" src="/static/images/wife_last_name_img.png" alt="wife_last_name_img.png" width="320" height="320">
         </div>
     </div>
     <div class="button">
         <div class="button-wrapper">
-            <a href="/smilecamera" class="submit">はんこを確定して次へ</a>>
+            <a href="/smilecamera" class="submit" onclick="setStampsToSession()">はんこを確定して次へ</a>>
         </div>
     </div>
-    <button>はんこの画像を変更する</button>
+    <!-- <button>はんこの画像を変更する</button> -->
 </div>
 
 <script src="static/js/confirm_stamps.js"></script>

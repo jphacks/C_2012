@@ -14,7 +14,7 @@ def load_files(sample_json):
 
 def create_last_name(last_name, whose_name):
     # フォントの読み込み
-    fnt = ImageFont.truetype('create_stamps/font/ipamjm.ttf', 500)
+    fnt = ImageFont.truetype('font/ipamjm.ttf', 500)
     # Imageインスタンスを生成
     last_name_img = Image.new('RGBA',(500, 500 * len(last_name)))
     # img上のImageDrawインスタンスを生成
@@ -22,19 +22,19 @@ def create_last_name(last_name, whose_name):
     # fontを指定
     for i in range(len(last_name)):
         draw.text((0, 500 * i), last_name[i], font = fnt, fill = 'red')
-    last_name_img.save('create_stamps/images/{}_last_name.png'.format(whose_name))
+    last_name_img.save('images/{}_last_name.png'.format(whose_name))
 
     return last_name_img
 
 def combine_images(whose_name):
     global base_img
     # 印鑑の外枠の読み込み
-    base_img = cv2.imread('create_stamps/images/format/stamps_base.png', -1)
+    base_img = cv2.imread('images/format/stamps_base.png', -1)
     # RGBへの変換
     base_img = cv2.cvtColor(base_img, cv2.COLOR_BGR2RGB)
 
     # 名字の文字画像の読み込み
-    last_name_img = cv2.imread('create_stamps/images/{}_last_name.png'.format(whose_name), -1)
+    last_name_img = cv2.imread('images/{}_last_name.png'.format(whose_name), -1)
     # RGBへの変換
     last_name_img = cv2.cvtColor(last_name_img, cv2.COLOR_BGRA2RGBA)
     # 112*224に縮小する
@@ -50,14 +50,14 @@ def combine_images(whose_name):
     combine(111, 55, 223, 279)
 
     # pngファイル'{}_last_name_img.png'を生成
-    cv2.imwrite('create_stamps/images/{}_last_name_img.png'.format(whose_name), base_img)
+    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
 
     # 保存したものを読み込み→変換→上書き保存 (((汚い!!!)))
-    base_img = cv2.imread('create_stamps/images/{}_last_name_img.png'.format(whose_name), -1)
+    base_img = cv2.imread('images/{}_last_name_img.png'.format(whose_name), -1)
     base_img = cv2.cvtColor(base_img, cv2.COLOR_BGRA2RGBA)
     # 白色のみTrueを返し，Alphaを0にする
     base_img[:, :, 3] = np.where(np.all(base_img == 255, axis = -1), 0, 255)
-    cv2.imwrite('create_stamps/images/{}_last_name_img.png'.format(whose_name), base_img)
+    cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
     cv2.imwrite('static/images/{}_last_name_img.png'.format(whose_name), base_img)
 
 
