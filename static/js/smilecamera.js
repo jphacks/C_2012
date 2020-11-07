@@ -83,7 +83,7 @@ FACE.EXPRESSION = () => {
 			let happy = faceDatum[i].expressions.happy;
 			// バー顔色
 			let color = happy * 150 + 100;
-			console.log(happy); 
+			// console.log(happy); 
 
 			
 			if (i == coordinates.indexOf(Math.max(...coordinates))) {
@@ -106,7 +106,7 @@ FACE.EXPRESSION = () => {
 				}
 
 				if (coordinates.indexOf(Math.min(...coordinates)) == 0) {
-				console.log(coordinates.indexOf(Math.min(...coordinates)));
+				// console.log(coordinates.indexOf(Math.min(...coordinates)));
 				emoticon2.style.bottom = 0+"px";
 				// emoticon2.style.backgroundColor = `rgb(${100}, ${100}, 100)`;
 				emoticon2.innerHTML = emoticonTxt[1];
