@@ -181,6 +181,21 @@ header img {
 
 /*
  *
+ * confirm_input.html
+ *
+ */
+ .pdf-wrapper {
+     width: 60vw;
+     max-width: 900px;
+     margin: 5% auto;
+ }
+
+ .pdf-wrapper > img {
+     width: 100%;
+ }
+
+/*
+ *
  * stamp.html
  *
  */
