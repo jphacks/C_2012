@@ -146,7 +146,7 @@ FACE.EXPRESSION = () => {
 		  setTimeout(await function(){
 			let camera = document.getElementById("camera")
 			camera.className = "shutterArea"
-			window.location.href = '/smilecamera';
+			window.location.href = '/stamp';
 		  }, 2000);
 		}
 		}
