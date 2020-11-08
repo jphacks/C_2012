@@ -15,13 +15,15 @@
     </h1>
     <div class="main download">
         <div class="download-wrapper">
-            <img src="/static/images/result.png" alt="婚姻届">
+            <img src="/static/images/result.png" alt="婚姻届" id="marriage_registration">
         </div>
     </div>
-    <!-- <div class="button">
+    <div class="button">
         <div class="button-wrapper">
-            <button class="submit">完成した婚姻届をダウンロード</button>
+            <a href="/static/images/result.pdf" class="submit" download onclick="moveToTop()">完成した婚姻届をダウンロード</a>
         </div>
-    </div> -->
+    </div>
 </div>
+
+<script src="static/js/download.js"></script>
 {%- endblock %}
