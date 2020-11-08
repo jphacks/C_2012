@@ -8,7 +8,7 @@ def remove_images():
     for file in file_list:
         os.remove(file)
 
-    file_list = glob.glob('static/images/*')
+    file_list = glob.glob('static/img/created/*')
 
     for file in file_list:
         os.remove(file)

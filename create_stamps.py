@@ -58,7 +58,7 @@ def combine_images(whose_name):
     # 白色のみTrueを返し，Alphaを0にする
     base_img[:, :, 3] = np.where(np.all(base_img == 255, axis = -1), 0, 255)
     cv2.imwrite('images/{}_last_name_img.png'.format(whose_name), base_img)
-    cv2.imwrite('static/images/{}_last_name_img.png'.format(whose_name), base_img)
+    cv2.imwrite('static/img/created/{}_last_name_img.png'.format(whose_name), base_img)
 
 
 if __name__ == '__main__':

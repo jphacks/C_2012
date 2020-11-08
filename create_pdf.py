@@ -7,7 +7,7 @@ from pdf2image import convert_from_path
 # 印鑑のpngファイルを75*75に縮小する
 def resize_image(whose_name):
   # 印鑑画像の読み込み
-  original_img = Image.open('static/images/{}_last_name_img.png'.format(whose_name))
+  original_img = Image.open('static/img/created/{}_last_name_img.png'.format(whose_name))
   # 75*75に縮小する
   original_img.thumbnail((75, 75), Image.ANTIALIAS)
   # 保存
@@ -17,7 +17,7 @@ def resize_image(whose_name):
   return resized_name_img
 
 def load_base_img():
-    base_img = cv2.imread('static/images/result_tmp.png')
+    base_img = cv2.imread('static/img/created/result_tmp.png')
 
     return base_img
 
@@ -42,10 +42,10 @@ def save_pdf(base_img, husband_stamp_img, wife_stamp_img):
 
     # pngファイル'result.png'を生成
     cv2.imwrite('images/result.png', base_img)
-    cv2.imwrite('static/images/result.png', base_img)
+    cv2.imwrite('static/img/created/result.png', base_img)
     # pdfファイル'result.pdf'を生成
     pil_img = Image.open('images/result.png','r')
-    pil_img.save('static/images/result.pdf', 'PDF')
+    pil_img.save('static/img/created/result.pdf', 'PDF')
 
 if __name__ == '__main__':
   husband_stamp_img = resize_image('husband')
