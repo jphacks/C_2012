@@ -1,6 +1,6 @@
 # nikoha（にこは）
 
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/42997991/98469505-6e9e4d00-2223-11eb-8e53-bad8a8e93a8e.png)](https://youtu.be/sKh3GzVOxkY)
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/42997991/98469505-6e9e4d00-2223-11eb-8e53-bad8a8e93a8e.png)](https://youtu.be/7IxT8E8qlQI)
 
 ## 製品概要
 
