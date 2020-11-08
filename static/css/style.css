@@ -189,6 +189,19 @@ header img {
     opacity: 0.6;
 }
 
+.input-section input[name="husband-address_first"],
+.input-section input[name="wife-address_first"] {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.input-section .form_input_num {
+    margin-right: 5px;
+}
+
 .input-section_grid_container {
     display: grid;
     grid-template-columns: 130px 1fr;
