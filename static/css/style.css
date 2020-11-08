@@ -131,6 +131,31 @@ header img {
 
 /*
  *
+ * top.html
+ *
+ */
+.top-container {
+    height: 70vh;
+    margin-top: 20vh;
+}
+
+ .top-wrapper {
+    width: 60vw;
+    max-width: 900px;
+    margin: 5% auto;
+    text-align: center;
+ }
+
+ .top-wrapper > img {
+    width: 40%;
+ }
+
+ .top-wrapper > h2 {
+    margin: 5vh 0 10vh;
+}
+
+/*
+ *
  * input.html
  *
  */
@@ -162,6 +187,19 @@ header img {
 .input-section input::placeholder {
     color: #BCA36E;
     opacity: 0.6;
+}
+
+.input-section input[name="husband-address_first"],
+.input-section input[name="wife-address_first"] {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.input-section .form_input_num {
+    margin-right: 5px;
 }
 
 .input-section_grid_container {

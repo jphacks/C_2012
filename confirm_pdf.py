@@ -251,10 +251,10 @@ def combine(base_img, x1, y1, x2, y2, text_img):
 def save_pdf(base_img):
     # pngファイル'result_tmp.png'を生成
     cv2.imwrite('images/result_tmp.png', base_img)
-    cv2.imwrite('static/images/result_tmp.png', base_img)
+    cv2.imwrite('static/img/created/result_tmp.png', base_img)
     # pdfファイル'result.pdf'を生成
     pil_img = Image.open('images/result_tmp.png', 'r')
-    pil_img.save('static/images/result_tmp.pdf', 'PDF')
+    pil_img.save('static/img/created/result_tmp.pdf', 'PDF')
 
 
 if __name__ == '__main__':

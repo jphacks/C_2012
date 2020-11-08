@@ -1,5 +1,6 @@
 {%- extends "layout.html" %}
 {%- block content %}
+<header><img src="../static/img/header-logo.png" alt="nikoha"></header>
 <div class="container">
     <div class="step">
         <ol class="step-list">
@@ -30,15 +31,15 @@
                     </div>
                     <div class="grid_title">生年月日</div>
                     <div>
-                        <input type="tel" class="form_input_num" name="husband-birth_year" size="8" maxlength="4">年　
-                        <input type="tel" class="form_input_num" name="husband-birth_month" size="8" maxlength="2">月　
-                        <input type="tel" class="from_input_num" name="husband-birth_day" size="8" maxlength="2">日　
+                        <input type="tel" class="form_input_num" name="husband-birth_year" size="12" maxlength="4">年　
+                        <input type="tel" class="form_input_num" name="husband-birth_month" size="12" maxlength="2">月　
+                        <input type="tel" class="form_input_num" name="husband-birth_day" size="12" maxlength="2">日　
                     </div>
                     <div class="grid_title">住所</div>
                     <div class="grid_content_wrapper address">
                         <div><input type="text" name="husband-address_first"></div>
-                        <div><input type="text" name="husband-address_banchi">番地</div>
-                        <div><input type="text" name="husband-address_ban">番　<input type="text" name="husband-address_gou">号　</div>
+                        <div><input type="text" class="form_input_num" name="husband-address_banchi" size="12">番地</div>
+                        <div><input type="text" class="form_input_num" name="husband-address_ban" size="12">番　<input type="text" class="form_input_num" name="husband-address_gou" size="12">号　</div>
                     </div>
                 </div>
             </div>
@@ -57,15 +58,15 @@
                     </div>
                     <div class="grid_title">生年月日</div>
                     <div>
-                        <input type="tel" class="form_input_num" name="wife-birth_year" size="8" maxlength="4">年
-                        <input type="tel" class="form_input_num" name="wife-birth_month" size="8" maxlength="2">月
-                        <input type="tel" class="from_input_num" name="wife-birth_day" size="8" maxlength="2">日
+                        <input type="tel" class="form_input_num" name="wife-birth_year" size="12" maxlength="4">年
+                        <input type="tel" class="form_input_num" name="wife-birth_month" size="12" maxlength="2">月
+                        <input type="tel" class="form_input_num" name="wife-birth_day" size="12" maxlength="2">日
                     </div>
                     <div class="grid_title">住所</div>
                     <div class="grid_content_wrapper address">
                         <div><input type="text" name="wife-address_first"></div>
-                        <div><input type="text" name="wife-address_banchi">番地</div>
-                        <div><input type="text" name="wife-address_ban">番　<input type="text" name="wife-address_gou">号　</div>
+                        <div><input type="text" class="form_input_num" name="wife-address_banchi" size="12">番地</div>
+                        <div><input type="text" class="form_input_num" name="wife-address_ban" size="12">番　<input type="text" class="form_input_num" name="wife-address_gou" size="12">号　</div>
                     </div>
                 </div>
             </div>
